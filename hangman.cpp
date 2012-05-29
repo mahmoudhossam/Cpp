@@ -4,12 +4,10 @@
 #include <algorithm>
 #include <vector>
 
-int main()
+std::vector<std::string> populate_word_list()
 {
-	srand(time(0));
-	std::vector<std::string> words;
-	std::vector<char> wrong;
-	words.push_back("purse");
+    std::vector<std::string> words;
+    words.push_back("purse");
 	words.push_back("crowbar");
 	words.push_back("terminal");
 	words.push_back("river");
@@ -20,9 +18,18 @@ int main()
 	words.push_back("lounge");
 	words.push_back("theory");
 	std::random_shuffle(words.begin(),words.end());
+    return words;
+}
+
+
+int main()
+{
+	srand(time(0));
+	std::vector<char> wrong;
+    std::vector<std::string> words = populate_word_list();
 	std::vector<std::string>::const_iterator iterator = words.begin();
 	std::string word = *iterator;
-	std::cout << "\n\nWelcome to hangman!\n\n";
+	std::cout << "\nWelcome to hangman!\n\n";
 	std::string word_line(word.size(),'_');
 	std::cout << "The word is : " << word_line << "\n\n";
 	for(int i = 0 ; i < 8;){
